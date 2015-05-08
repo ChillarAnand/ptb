@@ -174,23 +174,15 @@ class Hook(object):
     A hook to replace sys.excepthook that shows pretty traceback.
     """
 
-    def __init__(self, module=None, path=None, context=1, 
-                 locals=None, builtins=None, original=None):
+    def __init__(self, path=None, context=1, locals=None, builtins=None, original=None):
         self.context = context
         self.out = sys.stdout
-        self.module = module
         self.path = path
         self.original = original
         self.locals = locals
         self.builtins = builtins
 
     def __call__(self, etype, evalue, etb):
-        # if ptb is called as module, we need to skip 4 frames.
-        # see main() function.
-        # this is a hack. we need a better solution.
-        if self.module:
-            etb = etb.tb_next.tb_next.tb_next.tb_next
-
         self.handle((etype, evalue, etb))
 
     def handle(self, einfo=None):
@@ -205,24 +197,3 @@ class Hook(object):
 
 def enable(context=1, **kwargs):
     sys.excepthook = Hook(context=context, **kwargs)
-
-
-def main():
-    """
-    To make ptb run from commannd line.
-    """
-    filename = sys.argv[1]
-    enable(context=1, module=True)
-
-    import __main__
-    __main__.__dict__.clear()
-    __main__.__dict__.update({"__name__": "__main__",
-                              "__file__": filename,
-                              "__builtins__": __builtins__,
-                          })
-
-    exec(compile(open(filename).read(), filename, 'exec'))
-
-
-if __name__ == '__main__':
-    main()
