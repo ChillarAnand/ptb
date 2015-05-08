@@ -18,7 +18,7 @@ def requires(*f):
         ) if r]
 
 
-with open('README.md') as fh:
+with open('README.rst') as fh:
     long_description = fh.read()
 
     
@@ -26,7 +26,7 @@ setup(
     name='ptb',
     install_requires = requires('requirements.txt'),
     packages=find_packages(),
-    version='0.0.1',
+    version='0.0.2',
     description='ptb - Python TraceBack for Humans',
     long_description=long_description,
     keywords = 'traceback debugging',
@@ -37,7 +37,7 @@ setup(
     url='https://github.com/chillaranand/ptb',
     data_files=[],
     classifiers=[
-          'Development Status :: 2 - Alpha', 
+          'Development Status :: 1 - Planning',
           
           'Operating System :: POSIX',
           
