@@ -87,5 +87,7 @@ Get locals & builtins for all frames.
     import ptb; ptb.enable(locals=True, builtins=True)
 
 
-.. |PTB1| image:: https://cloud.githubusercontent.com/assets/4463796/7541467/4f1b2f3e-f5d3-11e4-8a51-4ae8e4880c1b.png
-.. |PTB0| image:: https://cloud.githubusercontent.com/assets/4463796/7541468/4f206918-f5d3-11e4-8df7-aca99d6df0c4.png
+.. |PTB0| image:: https://cloud.githubusercontent.com/assets/4463796/7541758/3ee3b404-f5d5-11e4-8e6a-714f7623ad98.png
+.. |PTB1| image:: https://cloud.githubusercontent.com/assets/4463796/7541757/3ee13e54-f5d5-11e4-9e18-f9a175545fca.png
+
+
