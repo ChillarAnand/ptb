@@ -13,10 +13,12 @@ debugging process by
 Demo
 ~~~~
 
-The default Python traceback looks like this
+**The default Python traceback looks like this**
+
 |PTB0|
 
-ptb traceback looks like this
+**ptb traceback looks like this**
+
 |PTB1|
 
 
