@@ -8,7 +8,7 @@ import traceback
 
 from pygments import highlight
 from pygments.formatters import TerminalFormatter
-from pygments.lexers import PythonLexer
+from pygments.lexers import PythonTracebackLexer
 
 
 __UNDEF__ = object()                          # sentinel object
@@ -20,7 +20,7 @@ def format_color(code):
     :param code: string
     :return: string
     """
-    return highlight(code=code, lexer=PythonLexer(), formatter=TerminalFormatter())
+    return highlight(code=code, lexer=PythonTracebackLexer(), formatter=TerminalFormatter())
 
 
 def format_objects(objects):
