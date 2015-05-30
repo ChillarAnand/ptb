@@ -8,7 +8,7 @@ import traceback
 
 from pygments import highlight
 from pygments.formatters import TerminalFormatter
-from pygments.lexers import PythonTracebackLexer
+from pygments.lexers import PythonLexer
 
 
 __UNDEF__ = object()                          # sentinel object
@@ -20,7 +20,7 @@ def format_color(code):
     :param code: string
     :return: string
     """
-    return highlight(code=code, lexer=PythonTracebackLexer(), formatter=TerminalFormatter())
+    return highlight(code=code, lexer=PythonLexer(), formatter=TerminalFormatter())
 
 
 def format_objects(objects):
@@ -28,7 +28,7 @@ def format_objects(objects):
     :param objects: List of tuples with name, location and value.
     :return: List of formatted objects.
 
-    Eg: 
+    Eg:
     (foo, local, 21) --> ['foo = 21']
     (bar, None, None) --> [bar undefined]
     """
@@ -135,9 +135,9 @@ def ptb(einfo, original, path, context, locals, builtins):
     pretty_tb = 'Pretty Traceback: \n\n'
     for frame_record in frame_records:
         fname, call, code, objects, frame_vars = frame_parser(frame_record)
-        
+
         if path:
-            if not path in fname:
+            if path not in fname:
                 continue
         fname = '{:<10} {}\n'.format('File:', fname)
         call = '{:<10} {}\n'.format('Call:',  call)
@@ -167,6 +167,36 @@ def ptb(einfo, original, path, context, locals, builtins):
     pretty_tb = '{}{}: {}'.format(pretty_tb, str(et)[8:-2], str(ev))
 
     return pretty_tb
+
+
+# def main():
+#     """
+#     To make ptb run from commannd line.
+#     """
+#     filename = sys.argv[1]
+
+#     if not os.path.exists(filename):
+#         print('Error:', filename, 'does not exist')
+#         sys.exit(1)
+
+#     # Replace ptb's dir with script's dir in front of module search path.
+#     sys.path[0] = os.path.dirname(mainpyfile)
+
+#     enable(context=1, module=True)
+
+#     import __main__
+#     __main__.__dict__.clear()
+#     __main__.__dict__.update({
+#         "__name__": "__main__",
+#         "__file__": filename,
+#         "__builtins__": __builtins__,
+#     })
+
+#     exec(compile(open(filename).read(), filename, 'exec'))
+
+
+# def run(statement, globals=None, locals=None):
+#     Pdb().run(statement, globals, locals)
 
 
 class Hook(object):
