@@ -51,7 +51,14 @@ You can also install from git repo
 Usage
 ~~~~~
 
-Just add this line at the top of your script
+Test your existing script without editing it:
+
+::
+
+    python -m ptb my_script
+
+
+Or just add this line at the top of your script
 
 ::
 
